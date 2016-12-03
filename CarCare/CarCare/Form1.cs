@@ -17,7 +17,19 @@ namespace CarCare
             InitializeComponent();
         }
 
+        DataWorker dw = new DataWorker();
+
         private void searchBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+             
+        }
+
+        private void addCust_Click(object sender, EventArgs e)
         {
 
         }

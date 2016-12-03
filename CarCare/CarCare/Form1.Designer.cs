@@ -106,7 +106,7 @@
             // 
             this.carInfoLbl.AutoSize = true;
             this.carInfoLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carInfoLbl.Location = new System.Drawing.Point(606, 15);
+            this.carInfoLbl.Location = new System.Drawing.Point(605, 12);
             this.carInfoLbl.Name = "carInfoLbl";
             this.carInfoLbl.Size = new System.Drawing.Size(95, 26);
             this.carInfoLbl.TabIndex = 6;
@@ -161,6 +161,7 @@
             this.addCust.TabIndex = 11;
             this.addCust.Text = "Add new customer";
             this.addCust.UseVisualStyleBackColor = true;
+            this.addCust.Click += new System.EventHandler(this.addCust_Click);
             // 
             // editCust
             // 
@@ -215,6 +216,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Car Care";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

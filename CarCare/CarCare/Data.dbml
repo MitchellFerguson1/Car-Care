@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Class="DataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="" Member="Customers">
+    <Type Name="Customers">
+      <Column Member="ID" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Member="CustomerName" Type="System.String" CanBeNull="false" />
+      <Column Member="Address" Type="System.String" CanBeNull="false" />
+      <Column Member="Car" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Customers_Cars" Member="Cars" ThisKey="Car" OtherKey="ID" Type="Cars" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Cars">
+    <Type Name="Cars">
+      <Column Member="ID" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Member="Make" Type="System.String" CanBeNull="false" />
+      <Column Member="Model" Type="System.String" CanBeNull="false" />
+      <Column Member="Year" Type="System.Int32" CanBeNull="false" />
+      <Column Member="Repairs" Type="System.Int32" CanBeNull="false" />
+      <Association Name="Cars_Repairs" Member="Repairs1" ThisKey="Repairs" OtherKey="ID" Type="Repairs" />
+      <Association Name="Customers_Cars" Member="Customers" ThisKey="ID" OtherKey="Car" Type="Customers" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Repairs">
+    <Type Name="Repairs">
+      <Column Member="ID" Type="System.Int32" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Member="Repair" Type="System.String" CanBeNull="false" />
+      <Column Member="Summary" Type="System.String" CanBeNull="false" />
+      <Column Member="Cost" Type="System.Double" CanBeNull="false" />
+      <Association Name="Cars_Repairs" Member="Cars" ThisKey="ID" OtherKey="Repairs" Type="Cars" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

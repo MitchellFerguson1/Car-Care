@@ -1,2 +1,11 @@
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\CarCare\CarCare\bin\Debug\CarCare.exe.config
 C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\bin\Debug\CarCare.exe.config
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\bin\Debug\CarCare.exe
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\bin\Debug\CarCare.pdb
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csprojResolveAssemblyReference.cache
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.addCust.resources
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Form1.resources
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Properties.Resources.resources
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csproj.GenerateResource.Cache
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.exe
+C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.pdb
