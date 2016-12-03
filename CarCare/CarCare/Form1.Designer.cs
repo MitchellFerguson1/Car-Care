@@ -39,6 +39,10 @@
             this.repairDetLbl = new System.Windows.Forms.Label();
             this.addRep = new System.Windows.Forms.Button();
             this.deleteRep = new System.Windows.Forms.Button();
+            this.addCust = new System.Windows.Forms.Button();
+            this.editCust = new System.Windows.Forms.Button();
+            this.deleteCust = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +60,7 @@
             this.custSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.custSearch.Location = new System.Drawing.Point(174, 9);
             this.custSearch.Name = "custSearch";
-            this.custSearch.Size = new System.Drawing.Size(426, 32);
+            this.custSearch.Size = new System.Drawing.Size(210, 32);
             this.custSearch.TabIndex = 1;
             // 
             // custList
@@ -74,7 +78,7 @@
             this.carList.FormattingEnabled = true;
             this.carList.Location = new System.Drawing.Point(7, 340);
             this.carList.Name = "carList";
-            this.carList.Size = new System.Drawing.Size(593, 134);
+            this.carList.Size = new System.Drawing.Size(249, 134);
             this.carList.TabIndex = 3;
             // 
             // label2
@@ -148,11 +152,56 @@
             this.deleteRep.Text = "Delete this repair";
             this.deleteRep.UseVisualStyleBackColor = true;
             // 
+            // addCust
+            // 
+            this.addCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addCust.Location = new System.Drawing.Point(260, 314);
+            this.addCust.Name = "addCust";
+            this.addCust.Size = new System.Drawing.Size(339, 50);
+            this.addCust.TabIndex = 11;
+            this.addCust.Text = "Add new customer";
+            this.addCust.UseVisualStyleBackColor = true;
+            // 
+            // editCust
+            // 
+            this.editCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editCust.Location = new System.Drawing.Point(260, 368);
+            this.editCust.Name = "editCust";
+            this.editCust.Size = new System.Drawing.Size(339, 50);
+            this.editCust.TabIndex = 12;
+            this.editCust.Text = "Edit Customer";
+            this.editCust.UseVisualStyleBackColor = true;
+            // 
+            // deleteCust
+            // 
+            this.deleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteCust.Location = new System.Drawing.Point(260, 424);
+            this.deleteCust.Name = "deleteCust";
+            this.deleteCust.Size = new System.Drawing.Size(339, 50);
+            this.deleteCust.TabIndex = 13;
+            this.deleteCust.Text = "Delete customer";
+            this.deleteCust.UseVisualStyleBackColor = true;
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBtn.Location = new System.Drawing.Point(391, 9);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(208, 32);
+            this.searchBtn.TabIndex = 14;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 485);
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.deleteCust);
+            this.Controls.Add(this.editCust);
+            this.Controls.Add(this.addCust);
             this.Controls.Add(this.deleteRep);
             this.Controls.Add(this.addRep);
             this.Controls.Add(this.repairDetLbl);
@@ -165,7 +214,7 @@
             this.Controls.Add(this.custSearch);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Car Care";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,6 +233,10 @@
         private System.Windows.Forms.Label repairDetLbl;
         private System.Windows.Forms.Button addRep;
         private System.Windows.Forms.Button deleteRep;
+        private System.Windows.Forms.Button addCust;
+        private System.Windows.Forms.Button editCust;
+        private System.Windows.Forms.Button deleteCust;
+        private System.Windows.Forms.Button searchBtn;
 
     }
 }
