@@ -71,7 +71,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.dbml</DependentUpon>
     </Compile>
-    <Compile Include="DataWorker.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
