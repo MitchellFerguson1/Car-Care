@@ -9,9 +9,6 @@ C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Proper
 C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csproj.GenerateResource.Cache
 C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.exe
 C:\Users\Mitchell\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.pdb
-C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csprojResolveAssemblyReference.cache
-C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.addCust.resources
-C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Form1.resources
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Properties.Resources.resources
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csproj.GenerateResource.Cache
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csproj.CoreCompileInputs.cache
@@ -20,3 +17,6 @@ C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\bin\Debug\CarCare.exe
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\bin\Debug\CarCare.pdb
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.exe
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.pdb
+C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csprojAssemblyReference.cache
+C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.AddCustomer.resources
+C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Home.resources
