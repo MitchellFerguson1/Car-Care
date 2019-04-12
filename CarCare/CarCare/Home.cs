@@ -16,15 +16,22 @@ namespace CarCare
     {
         private SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CarCare;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         private SqlCommand command = new SqlCommand();
+        private List<Customer> customerList = new List<Customer>();
+        DatabaseWorker dbw;
 
         public Home()
         {
+            dbw = new DatabaseWorker(connection, command);
             InitializeComponent();
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            
+            custList.Items.Clear();
+            List<string> customerList = dbw.customerSearch(custSearch.Text);
+            foreach (string customer in customerList)
+                custList.Items.Add(customer);
+            formRefresh();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -40,26 +47,51 @@ namespace CarCare
 
         private void formRefresh()
         {
-            List<string> customerData = new List<string>();
             custList.Items.Clear();
-            command = new SqlCommand("GetCustomers", connection);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            string entry = null;
+            customerList = dbw.getCustomerObjects();
 
-            while (reader.Read())
-            {
-                entry = reader["custId"].ToString() + " ";
-                entry += reader["name"].ToString();
-                custList.Items.Add(entry);
-            }
-            connection.Close();
+            foreach (Customer customer in customerList)
+                custList.Items.Add(customer.ToString());
         }
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
             formRefresh();
+        }
+
+        private void deleteCust_Click(object sender, EventArgs e)
+        {
+            string item = custList.GetItemText(custList.SelectedItem);
+            if (item != null)
+            {
+                Customer toDelete = new Customer("null", "null", "-1");
+                foreach (Customer current in customerList)
+                    if (current.ToString().Equals(item))
+                    {
+                        toDelete = current;
+                        break;
+                    }
+                dbw.deleteCustomer(toDelete.id);
+                formRefresh();
+            }
+        }
+
+        private void custList_Click(object sender, EventArgs e)
+        {
+            string item = custList.GetItemText(custList.SelectedItem);
+            Customer getCarCustomer = new Customer("null", "null", "null");
+            foreach(Customer current in customerList)
+            {
+                if(current.ToString().Equals(item))
+                {
+                    getCarCustomer = current;
+                    break;
+                }
+            }
+            if(!getCarCustomer.ToString().Equals("null null null"))
+            {
+
+            }
         }
     }
 }
