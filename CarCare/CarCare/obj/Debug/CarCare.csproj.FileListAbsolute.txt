@@ -20,3 +20,4 @@ C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.pdb
 C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csprojAssemblyReference.cache
 C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.AddCustomer.resources
 C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Home.resources
+C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.EditCustomer.resources

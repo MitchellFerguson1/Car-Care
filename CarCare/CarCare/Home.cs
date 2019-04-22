@@ -78,6 +78,7 @@ namespace CarCare
 
         private void custList_Click(object sender, EventArgs e)
         {
+            carList.Items.Clear();
             string item = custList.GetItemText(custList.SelectedItem);
             Customer getCarCustomer = new Customer("null", "null", "null");
             foreach(Customer current in customerList)
@@ -90,8 +91,28 @@ namespace CarCare
             }
             if(!getCarCustomer.ToString().Equals("null null null"))
             {
-
+                List<string> cars = dbw.getCars(getCarCustomer.id);
+                foreach(string car in cars)
+                {
+                    carList.Items.Add(car);
+                }
             }
+        }
+
+        private void editCust_Click(object sender, EventArgs e)
+        {
+            string item = custList.GetItemText(custList.SelectedItem);
+            Customer getCustomer = new Customer("null", "null", "null");
+            foreach (Customer current in customerList)
+            {
+                if (current.ToString().Equals(item))
+                {
+                    getCustomer = current;
+                    break;
+                }
+            }
+            EditCustomer ec = new EditCustomer(connection, command, getCustomer);
+            ec.Show();
         }
     }
 }

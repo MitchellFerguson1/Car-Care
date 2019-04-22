@@ -188,6 +188,7 @@
             this.editCust.TabIndex = 12;
             this.editCust.Text = "Edit Customer";
             this.editCust.UseVisualStyleBackColor = true;
+            this.editCust.Click += new System.EventHandler(this.editCust_Click);
             // 
             // deleteCust
             // 
