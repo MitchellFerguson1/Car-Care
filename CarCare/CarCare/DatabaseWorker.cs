@@ -19,21 +19,26 @@ namespace CarCare
 
         private void executeCommand()
         {
+            if (connection.State == System.Data.ConnectionState.Open)
+                connection.Close();
             connection.Open();
             command.ExecuteNonQuery();
         }
 
         private SqlDataReader executeCommandWithReader()
         {
+            if (connection.State == System.Data.ConnectionState.Open)
+                connection.Close();
             connection.Open();
             SqlDataReader toBeReturned = command.ExecuteReader();
             return toBeReturned;
         }
 
+#region Customer Stuff
         public List<string> customerSearch(string custName)
         {
             List<string> sameCustomers = new List<string>();
-            string searchString = "SELECT custId, name, address FROM Customers WHERE name = @name";
+            string searchString = "SELECT custId, name, address FROM Customers WHERE name LIKE '%' + @name + '%'";
             command = new SqlCommand(searchString, connection);
             command.Parameters.AddWithValue("@name", custName);
             SqlDataReader reader = executeCommandWithReader();
@@ -42,30 +47,11 @@ namespace CarCare
                 string id = reader["custId"].ToString();
                 string name = reader["name"].ToString();
                 string address = reader["address"].ToString();
-                string entry = id + "" + name + " " + address;
+                string entry = id + " " + name + " " + address;
                 sameCustomers.Add(entry);
             }
             connection.Close();
             return sameCustomers;
-        }
-
-        public List<string> getCustomers()
-        {
-            List<string> customers = new List<string>();
-            command = new SqlCommand("GetCustomers", connection);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlDataReader reader = executeCommandWithReader();
-
-            while (reader.Read())
-            {
-                string id = reader["custId"].ToString();
-                string name = reader["name"].ToString();
-                string address = reader["address"].ToString();
-                string entry = id + "" + name + " " + address;
-                customers.Add(entry);
-            }
-            connection.Close();
-            return customers;
         }
 
         public List<Customer> getCustomerObjects()
@@ -91,26 +77,20 @@ namespace CarCare
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@custID", customerID);
             executeCommand();
+            connection.Close();
         }
 
-        public List<string> getCars(string customerID)
+        public void updateCustomer(string newName, string newAddress, string id)
         {
-            List<string> cars = new List<string>();
-            string getCarQuery = "SELECT carId, year, make, model FROM Cars WHERE custId = @custId";
-            command = new SqlCommand(getCarQuery, connection);
-            command.Parameters.AddWithValue("@custId", customerID);
-            SqlDataReader reader = executeCommandWithReader();
-            while(reader.Read())
-            {
-                string entry = reader["carId"].ToString() + " ";
-                entry += reader["year"].ToString() + " ";
-                entry += reader["make"].ToString() + " ";
-                entry += reader["model"].ToString() + " ";
-                cars.Add(entry);
-            }
+            command = new SqlCommand("updateCustomer", connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@custId", Convert.ToInt32(id));
+            command.Parameters.AddWithValue("@newName", newName);
+            command.Parameters.AddWithValue("@newAddress", newAddress);
+            executeCommand();
             connection.Close();
-            return cars;
         }
+#endregion
 
         public List<Car> getCarObjects(string customerID)
         {
@@ -131,13 +111,18 @@ namespace CarCare
             return cars;
         }
 
-        public void updateCustomer(string newName, string newAddress, string id)
+        public void deleteCar(string carID)
         {
-            command = new SqlCommand("updateCustomer", connection);
-            command.Parameters.AddWithValue("@custId", id);
-            command.Parameters.AddWithValue("@newName", newName);
-            command.Parameters.AddWithValue("@newAddress", newAddress);
+            command = new SqlCommand("DeleteCar", connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@carID", Convert.ToInt32(carID));
             executeCommand();
+            connection.Close();
+        }
+
+        public List<Repair> getRepairs(string carID)
+        {
+            return new List<Repair>();
         }
     }
 }

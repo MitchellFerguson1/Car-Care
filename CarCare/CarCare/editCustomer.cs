@@ -42,7 +42,14 @@ namespace CarCare
 
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-
+            string selectedCar = carList.GetItemText(carList.SelectedItem);
+            foreach(Car car in cars)
+            {
+                if(car.ToString().Equals(selectedCar))
+                {
+                    dbw.deleteCar(car.carID);
+                }
+            }
         }
 
         private void confirmBtn_Click(object sender, EventArgs e)
@@ -51,6 +58,22 @@ namespace CarCare
             string newAddress = addressChangeTxt.Text;
             dbw.updateCustomer(newName, newAddress, customer.id);
             Close();
+        }
+
+        private void AddCarBtn_Click(object sender, EventArgs e)
+        {
+            AddNewCar anc = new AddNewCar(connection, command, customer);
+            anc.Show();
+        }
+
+        private void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            carList.Items.Clear();
+            cars = dbw.getCarObjects(customer.id);
+            foreach (Car car in cars)
+            {
+                carList.Items.Add(car);
+            }
         }
     }
 }

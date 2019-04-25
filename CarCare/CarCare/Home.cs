@@ -17,6 +17,8 @@ namespace CarCare
         private SqlConnection connection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CarCare;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         private SqlCommand command = new SqlCommand();
         private List<Customer> customerList = new List<Customer>();
+        private List<Car> cars = new List<Car>();
+        private List<Repair> repairs = new List<Repair>();
         DatabaseWorker dbw;
 
         public Home()
@@ -31,18 +33,11 @@ namespace CarCare
             List<string> customerList = dbw.customerSearch(custSearch.Text);
             foreach (string customer in customerList)
                 custList.Items.Add(customer);
-            formRefresh();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             formRefresh();
-        }
-
-        private void addCust_Click(object sender, EventArgs e)
-        {
-            AddCustomer ac = new AddCustomer(connection, command);
-            ac.Show();
         }
 
         private void formRefresh()
@@ -51,12 +46,19 @@ namespace CarCare
             customerList = dbw.getCustomerObjects();
 
             foreach (Customer customer in customerList)
-                custList.Items.Add(customer.ToString());
+                custList.Items.Add(customer.name + " " + customer.address);
         }
 
         private void refreshBtn_Click(object sender, EventArgs e)
         {
             formRefresh();
+        }
+
+#region Customer Stuff
+        private void addCust_Click(object sender, EventArgs e)
+        {
+            AddCustomer ac = new AddCustomer(connection, command);
+            ac.Show();
         }
 
         private void deleteCust_Click(object sender, EventArgs e)
@@ -66,11 +68,14 @@ namespace CarCare
             {
                 Customer toDelete = new Customer("null", "null", "-1");
                 foreach (Customer current in customerList)
-                    if (current.ToString().Equals(item))
+                {
+                    string currentString = current.name + " " + current.address;
+                    if (currentString.Equals(item))
                     {
                         toDelete = current;
                         break;
                     }
+                }
                 dbw.deleteCustomer(toDelete.id);
                 formRefresh();
             }
@@ -83,7 +88,8 @@ namespace CarCare
             Customer getCarCustomer = new Customer("null", "null", "null");
             foreach(Customer current in customerList)
             {
-                if(current.ToString().Equals(item))
+                string currentString = current.name + " " + current.address;
+                if (currentString.Equals(item))
                 {
                     getCarCustomer = current;
                     break;
@@ -91,10 +97,11 @@ namespace CarCare
             }
             if(!getCarCustomer.ToString().Equals("null null null"))
             {
-                List<string> cars = dbw.getCars(getCarCustomer.id);
-                foreach(string car in cars)
+                cars = dbw.getCarObjects(getCarCustomer.id);
+                foreach(Car car in cars)
                 {
-                    carList.Items.Add(car);
+                    string carString = car.year + " " + car.make + " " + car.model;
+                    carList.Items.Add(carString);
                 }
             }
         }
@@ -103,16 +110,48 @@ namespace CarCare
         {
             string item = custList.GetItemText(custList.SelectedItem);
             Customer getCustomer = new Customer("null", "null", "null");
+            bool customerSelected = false;
             foreach (Customer current in customerList)
             {
-                if (current.ToString().Equals(item))
+                string currentString = current.name + " " + current.address;
+                if (currentString.Equals(item))
                 {
                     getCustomer = current;
+                    customerSelected = true;
                     break;
                 }
             }
-            EditCustomer ec = new EditCustomer(connection, command, getCustomer);
-            ec.Show();
+            if (customerSelected)
+            {
+                EditCustomer ec = new EditCustomer(connection, command, getCustomer);
+                ec.Show();
+            }
+        }
+#endregion
+
+        private void AddRep_Click(object sender, EventArgs e)
+        {
+            AddRepair ap = new AddRepair(connection, command);
+            ap.Show();
+        }
+
+        private void RefreshRepairBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CarList_MouseClick(object sender, MouseEventArgs e)
+        {
+            string currentCar = carList.GetItemText(carList.SelectedItem);
+            Car current = new Car("null", "null", "null", "null", "null");
+            foreach(Car car in cars)
+            {
+                string carString = car.year + " " + car.make + " " + car.model;
+                if(carString.Equals(currentCar))
+                    current = car;
+            }
+
+            carDetailsTxt.Text = current.year + " " + current.make + " " + current.model + " " + current.license;
         }
     }
 }

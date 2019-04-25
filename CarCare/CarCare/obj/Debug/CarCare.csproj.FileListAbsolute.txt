@@ -21,3 +21,5 @@ C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.csprojAss
 C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.AddCustomer.resources
 C:\Users\nowhe\source\repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.Home.resources
 C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.EditCustomer.resources
+C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.AddRepair.resources
+C:\Users\nowhe\Source\Repos\Car-Care\CarCare\CarCare\obj\Debug\CarCare.AddNewCar.resources

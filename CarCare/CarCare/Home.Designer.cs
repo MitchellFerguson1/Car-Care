@@ -44,6 +44,11 @@
             this.deleteCust = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
             this.refreshBtn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.RepairDetailTxt = new System.Windows.Forms.Label();
+            this.RefreshRepairBtn = new System.Windows.Forms.Button();
+            this.RefreshCarBtn = new System.Windows.Forms.Button();
+            this.carDetailsTxt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +66,7 @@
             // 
             this.custSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.custSearch.Location = new System.Drawing.Point(348, 17);
-            this.custSearch.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.custSearch.Margin = new System.Windows.Forms.Padding(6);
             this.custSearch.Name = "custSearch";
             this.custSearch.Size = new System.Drawing.Size(416, 56);
             this.custSearch.TabIndex = 1;
@@ -72,9 +77,9 @@
             this.custList.FormattingEnabled = true;
             this.custList.ItemHeight = 31;
             this.custList.Location = new System.Drawing.Point(14, 123);
-            this.custList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.custList.Margin = new System.Windows.Forms.Padding(6);
             this.custList.Name = "custList";
-            this.custList.Size = new System.Drawing.Size(1182, 438);
+            this.custList.Size = new System.Drawing.Size(1182, 407);
             this.custList.TabIndex = 2;
             this.custList.Click += new System.EventHandler(this.custList_Click);
             // 
@@ -83,10 +88,11 @@
             this.carList.FormattingEnabled = true;
             this.carList.ItemHeight = 25;
             this.carList.Location = new System.Drawing.Point(14, 654);
-            this.carList.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.carList.Margin = new System.Windows.Forms.Padding(6);
             this.carList.Name = "carList";
             this.carList.Size = new System.Drawing.Size(494, 254);
             this.carList.TabIndex = 3;
+            this.carList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CarList_MouseClick);
             // 
             // label2
             // 
@@ -103,11 +109,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(4, 73);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 77);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 51);
+            this.label3.Size = new System.Drawing.Size(197, 39);
             this.label3.TabIndex = 5;
             this.label3.Text = "Customers:";
             // 
@@ -115,7 +121,7 @@
             // 
             this.carInfoLbl.AutoSize = true;
             this.carInfoLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.carInfoLbl.Location = new System.Drawing.Point(1210, 23);
+            this.carInfoLbl.Location = new System.Drawing.Point(1217, 23);
             this.carInfoLbl.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.carInfoLbl.Name = "carInfoLbl";
             this.carInfoLbl.Size = new System.Drawing.Size(186, 51);
@@ -128,16 +134,16 @@
             this.repairHist.FormattingEnabled = true;
             this.repairHist.ItemHeight = 31;
             this.repairHist.Location = new System.Drawing.Point(1222, 123);
-            this.repairHist.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.repairHist.Margin = new System.Windows.Forms.Padding(6);
             this.repairHist.Name = "repairHist";
-            this.repairHist.Size = new System.Drawing.Size(1208, 438);
+            this.repairHist.Size = new System.Drawing.Size(1208, 407);
             this.repairHist.TabIndex = 7;
             // 
             // repairDetLbl
             // 
             this.repairDetLbl.AutoSize = true;
             this.repairDetLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repairDetLbl.Location = new System.Drawing.Point(1212, 598);
+            this.repairDetLbl.Location = new System.Drawing.Point(1217, 536);
             this.repairDetLbl.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.repairDetLbl.Name = "repairDetLbl";
             this.repairDetLbl.Size = new System.Drawing.Size(305, 51);
@@ -148,18 +154,19 @@
             // 
             this.addRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addRep.Location = new System.Drawing.Point(1222, 756);
-            this.addRep.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.addRep.Margin = new System.Windows.Forms.Padding(6);
             this.addRep.Name = "addRep";
             this.addRep.Size = new System.Drawing.Size(600, 158);
             this.addRep.TabIndex = 9;
             this.addRep.Text = "Add new repair";
             this.addRep.UseVisualStyleBackColor = true;
+            this.addRep.Click += new System.EventHandler(this.AddRep_Click);
             // 
             // deleteRep
             // 
             this.deleteRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteRep.Location = new System.Drawing.Point(1834, 756);
-            this.deleteRep.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.deleteRep.Margin = new System.Windows.Forms.Padding(6);
             this.deleteRep.Name = "deleteRep";
             this.deleteRep.Size = new System.Drawing.Size(600, 158);
             this.deleteRep.TabIndex = 10;
@@ -170,7 +177,7 @@
             // 
             this.addCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addCust.Location = new System.Drawing.Point(520, 604);
-            this.addCust.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.addCust.Margin = new System.Windows.Forms.Padding(6);
             this.addCust.Name = "addCust";
             this.addCust.Size = new System.Drawing.Size(678, 96);
             this.addCust.TabIndex = 11;
@@ -182,7 +189,7 @@
             // 
             this.editCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editCust.Location = new System.Drawing.Point(520, 708);
-            this.editCust.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.editCust.Margin = new System.Windows.Forms.Padding(6);
             this.editCust.Name = "editCust";
             this.editCust.Size = new System.Drawing.Size(678, 96);
             this.editCust.TabIndex = 12;
@@ -194,7 +201,7 @@
             // 
             this.deleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteCust.Location = new System.Drawing.Point(520, 815);
-            this.deleteCust.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.deleteCust.Margin = new System.Windows.Forms.Padding(6);
             this.deleteCust.Name = "deleteCust";
             this.deleteCust.Size = new System.Drawing.Size(678, 96);
             this.deleteCust.TabIndex = 13;
@@ -206,7 +213,7 @@
             // 
             this.searchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBtn.Location = new System.Drawing.Point(782, 17);
-            this.searchBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(6);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(416, 62);
             this.searchBtn.TabIndex = 14;
@@ -217,7 +224,7 @@
             // refreshBtn
             // 
             this.refreshBtn.Location = new System.Drawing.Point(1048, 79);
-            this.refreshBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.refreshBtn.Margin = new System.Windows.Forms.Padding(6);
             this.refreshBtn.Name = "refreshBtn";
             this.refreshBtn.Size = new System.Drawing.Size(150, 44);
             this.refreshBtn.TabIndex = 15;
@@ -225,12 +232,64 @@
             this.refreshBtn.UseVisualStyleBackColor = true;
             this.refreshBtn.Click += new System.EventHandler(this.refreshBtn_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(1219, 77);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(147, 39);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Repairs:";
+            // 
+            // RepairDetailTxt
+            // 
+            this.RepairDetailTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RepairDetailTxt.Location = new System.Drawing.Point(1226, 604);
+            this.RepairDetailTxt.Name = "RepairDetailTxt";
+            this.RepairDetailTxt.Size = new System.Drawing.Size(1204, 146);
+            this.RepairDetailTxt.TabIndex = 17;
+            // 
+            // RefreshRepairBtn
+            // 
+            this.RefreshRepairBtn.Location = new System.Drawing.Point(2280, 79);
+            this.RefreshRepairBtn.Margin = new System.Windows.Forms.Padding(6);
+            this.RefreshRepairBtn.Name = "RefreshRepairBtn";
+            this.RefreshRepairBtn.Size = new System.Drawing.Size(150, 44);
+            this.RefreshRepairBtn.TabIndex = 18;
+            this.RefreshRepairBtn.Text = "Refresh";
+            this.RefreshRepairBtn.UseVisualStyleBackColor = true;
+            this.RefreshRepairBtn.Click += new System.EventHandler(this.RefreshRepairBtn_Click);
+            // 
+            // RefreshCarBtn
+            // 
+            this.RefreshCarBtn.Location = new System.Drawing.Point(358, 609);
+            this.RefreshCarBtn.Margin = new System.Windows.Forms.Padding(6);
+            this.RefreshCarBtn.Name = "RefreshCarBtn";
+            this.RefreshCarBtn.Size = new System.Drawing.Size(150, 44);
+            this.RefreshCarBtn.TabIndex = 19;
+            this.RefreshCarBtn.Text = "Refresh";
+            this.RefreshCarBtn.UseVisualStyleBackColor = true;
+            // 
+            // carDetailsTxt
+            // 
+            this.carDetailsTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.carDetailsTxt.Location = new System.Drawing.Point(1412, 23);
+            this.carDetailsTxt.Name = "carDetailsTxt";
+            this.carDetailsTxt.Size = new System.Drawing.Size(1013, 51);
+            this.carDetailsTxt.TabIndex = 20;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2446, 933);
+            this.ClientSize = new System.Drawing.Size(2449, 921);
+            this.Controls.Add(this.carDetailsTxt);
+            this.Controls.Add(this.RefreshCarBtn);
+            this.Controls.Add(this.RefreshRepairBtn);
+            this.Controls.Add(this.RepairDetailTxt);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.searchBtn);
             this.Controls.Add(this.deleteCust);
@@ -247,7 +306,8 @@
             this.Controls.Add(this.custList);
             this.Controls.Add(this.custSearch);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Home";
             this.Text = "Car Care";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -274,6 +334,11 @@
         private System.Windows.Forms.Button deleteCust;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button refreshBtn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label RepairDetailTxt;
+        private System.Windows.Forms.Button RefreshRepairBtn;
+        private System.Windows.Forms.Button RefreshCarBtn;
+        private System.Windows.Forms.Label carDetailsTxt;
     }
 }
 
