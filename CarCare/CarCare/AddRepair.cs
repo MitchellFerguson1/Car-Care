@@ -15,11 +15,15 @@ namespace CarCare
     {
         SqlConnection connection;
         SqlCommand command;
+        DatabaseWorker dbw;
+        Car currentCar;
 
-        public AddRepair(SqlConnection connection, SqlCommand command)
+        public AddRepair(SqlConnection connection, SqlCommand command, DatabaseWorker dbw, Car currentCar)
         {
             this.connection = connection;
             this.command = command;
+            this.dbw = dbw;
+            this.currentCar = currentCar;
             InitializeComponent();
         }
 
@@ -27,6 +31,8 @@ namespace CarCare
         {
             string repairDetail = RepairDetailsTxt.Text;
             float repairCost = (float)(Cost.Value);
+            dbw.addRepair(repairDetail, repairCost, currentCar.carID);
+            Close();
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)

@@ -19,6 +19,8 @@ namespace CarCare
         private List<Customer> customerList = new List<Customer>();
         private List<Car> cars = new List<Car>();
         private List<Repair> repairs = new List<Repair>();
+        private Car selectedCar;
+        private Customer selectedCustomer = null;
         DatabaseWorker dbw;
 
         public Home()
@@ -30,9 +32,12 @@ namespace CarCare
         private void searchBtn_Click(object sender, EventArgs e)
         {
             custList.Items.Clear();
-            List<string> customerList = dbw.customerSearch(custSearch.Text);
-            foreach (string customer in customerList)
-                custList.Items.Add(customer);
+            List<Customer> customerList = dbw.customerSearch(custSearch.Text);
+            foreach (Customer customer in customerList)
+            {
+                string entry = customer.name + " " + customer.address;
+                custList.Items.Add(entry);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,41 +68,29 @@ namespace CarCare
 
         private void deleteCust_Click(object sender, EventArgs e)
         {
-            string item = custList.GetItemText(custList.SelectedItem);
-            if (item != null)
-            {
-                Customer toDelete = new Customer("null", "null", "-1");
-                foreach (Customer current in customerList)
-                {
-                    string currentString = current.name + " " + current.address;
-                    if (currentString.Equals(item))
-                    {
-                        toDelete = current;
-                        break;
-                    }
-                }
-                dbw.deleteCustomer(toDelete.id);
-                formRefresh();
-            }
+            dbw.deleteCustomer(selectedCustomer.id);
+            selectedCustomer = null;
+            formRefresh();
         }
 
         private void custList_Click(object sender, EventArgs e)
         {
             carList.Items.Clear();
             string item = custList.GetItemText(custList.SelectedItem);
-            Customer getCarCustomer = new Customer("null", "null", "null");
+            carDetailsTxt.Text = "";
+            repairHist.Items.Clear();
             foreach(Customer current in customerList)
             {
                 string currentString = current.name + " " + current.address;
                 if (currentString.Equals(item))
                 {
-                    getCarCustomer = current;
+                    selectedCustomer = current;
                     break;
                 }
             }
-            if(!getCarCustomer.ToString().Equals("null null null"))
+            if(!(selectedCustomer == null))
             {
-                cars = dbw.getCarObjects(getCarCustomer.id);
+                cars = dbw.getCarObjects(selectedCustomer.id);
                 foreach(Car car in cars)
                 {
                     string carString = car.year + " " + car.make + " " + car.model;
@@ -109,21 +102,21 @@ namespace CarCare
         private void editCust_Click(object sender, EventArgs e)
         {
             string item = custList.GetItemText(custList.SelectedItem);
-            Customer getCustomer = new Customer("null", "null", "null");
             bool customerSelected = false;
+            selectedCar = null;
             foreach (Customer current in customerList)
             {
                 string currentString = current.name + " " + current.address;
                 if (currentString.Equals(item))
                 {
-                    getCustomer = current;
+                    selectedCustomer = current;
                     customerSelected = true;
                     break;
                 }
             }
             if (customerSelected)
             {
-                EditCustomer ec = new EditCustomer(connection, command, getCustomer);
+                EditCustomer ec = new EditCustomer(connection, command, selectedCustomer);
                 ec.Show();
             }
         }
@@ -131,27 +124,70 @@ namespace CarCare
 
         private void AddRep_Click(object sender, EventArgs e)
         {
-            AddRepair ap = new AddRepair(connection, command);
+            AddRepair ap = new AddRepair(connection, command, dbw, selectedCar);
             ap.Show();
         }
 
         private void RefreshRepairBtn_Click(object sender, EventArgs e)
         {
-
+            repairs = dbw.getRepairs(selectedCar.carID);
+            repairHist.Items.Clear();
+            foreach(Repair repair in repairs)
+            {
+                repairHist.Items.Add(repair.summaryString());
+            }
         }
 
         private void CarList_MouseClick(object sender, MouseEventArgs e)
         {
             string currentCar = carList.GetItemText(carList.SelectedItem);
-            Car current = new Car("null", "null", "null", "null", "null");
             foreach(Car car in cars)
             {
                 string carString = car.year + " " + car.make + " " + car.model;
-                if(carString.Equals(currentCar))
-                    current = car;
+                if (carString.Equals(currentCar))
+                {
+                    selectedCar = car;
+                    break;
+                }
             }
 
-            carDetailsTxt.Text = current.year + " " + current.make + " " + current.model + " " + current.license;
+            if (selectedCar != null)
+            {
+                carDetailsTxt.Text = selectedCar.year + " " + selectedCar.make + " " + selectedCar.model + " " + selectedCar.license;
+
+                repairs = dbw.getRepairs(selectedCar.carID);
+                repairHist.Items.Clear();
+                foreach (Repair r in repairs)
+                {
+                    repairHist.Items.Add(r.summaryString());
+                }
+            }
+        }
+
+        private void DeleteRep_Click(object sender, EventArgs e)
+        {
+            string repair = repairHist.GetItemText(repairHist.SelectedItem);
+            foreach (Repair r in repairs)
+            {
+                if (r.summaryString().Equals(repair))
+                {
+                    dbw.deleteRepair(r.id);
+                    break;
+                }
+            }
+        }
+
+        private void RepairHist_Click(object sender, EventArgs e)
+        {
+            string repair = repairHist.GetItemText(repairHist.SelectedItem);
+            foreach (Repair r in repairs)
+            {
+                if (r.summaryString().Equals(repair))
+                {
+                    RepairDetailTxt.Text = r.ToString();
+                    break;
+                }
+            }
         }
     }
 }

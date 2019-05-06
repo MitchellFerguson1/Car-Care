@@ -47,7 +47,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.RepairDetailTxt = new System.Windows.Forms.Label();
             this.RefreshRepairBtn = new System.Windows.Forms.Button();
-            this.RefreshCarBtn = new System.Windows.Forms.Button();
             this.carDetailsTxt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -138,6 +137,7 @@
             this.repairHist.Name = "repairHist";
             this.repairHist.Size = new System.Drawing.Size(1208, 407);
             this.repairHist.TabIndex = 7;
+            this.repairHist.Click += new System.EventHandler(this.RepairHist_Click);
             // 
             // repairDetLbl
             // 
@@ -172,6 +172,7 @@
             this.deleteRep.TabIndex = 10;
             this.deleteRep.Text = "Delete this repair";
             this.deleteRep.UseVisualStyleBackColor = true;
+            this.deleteRep.Click += new System.EventHandler(this.DeleteRep_Click);
             // 
             // addCust
             // 
@@ -261,16 +262,6 @@
             this.RefreshRepairBtn.UseVisualStyleBackColor = true;
             this.RefreshRepairBtn.Click += new System.EventHandler(this.RefreshRepairBtn_Click);
             // 
-            // RefreshCarBtn
-            // 
-            this.RefreshCarBtn.Location = new System.Drawing.Point(358, 609);
-            this.RefreshCarBtn.Margin = new System.Windows.Forms.Padding(6);
-            this.RefreshCarBtn.Name = "RefreshCarBtn";
-            this.RefreshCarBtn.Size = new System.Drawing.Size(150, 44);
-            this.RefreshCarBtn.TabIndex = 19;
-            this.RefreshCarBtn.Text = "Refresh";
-            this.RefreshCarBtn.UseVisualStyleBackColor = true;
-            // 
             // carDetailsTxt
             // 
             this.carDetailsTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -286,7 +277,6 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2449, 921);
             this.Controls.Add(this.carDetailsTxt);
-            this.Controls.Add(this.RefreshCarBtn);
             this.Controls.Add(this.RefreshRepairBtn);
             this.Controls.Add(this.RepairDetailTxt);
             this.Controls.Add(this.label4);
@@ -337,7 +327,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label RepairDetailTxt;
         private System.Windows.Forms.Button RefreshRepairBtn;
-        private System.Windows.Forms.Button RefreshCarBtn;
         private System.Windows.Forms.Label carDetailsTxt;
     }
 }

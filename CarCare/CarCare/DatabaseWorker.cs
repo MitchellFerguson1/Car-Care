@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace CarCare
 {
-    class DatabaseWorker
+    public class DatabaseWorker
     {
         SqlConnection connection;
         SqlCommand command;
@@ -34,24 +34,34 @@ namespace CarCare
             return toBeReturned;
         }
 
-#region Customer Stuff
-        public List<string> customerSearch(string custName)
+        #region Customer Stuff
+        public void addCustomer(string name, string address, string make, string model, int year, string license)
         {
-            List<string> sameCustomers = new List<string>();
+            command = new SqlCommand("AddNewCust", connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("name", name);
+            command.Parameters.AddWithValue("address", address);
+            executeCommand();
+            connection.Close();
+
+            addNewCar(name, address, make, model, year, license);
+        }
+
+        public List<Customer> customerSearch(string custName)
+        {
             string searchString = "SELECT custId, name, address FROM Customers WHERE name LIKE '%' + @name + '%'";
             command = new SqlCommand(searchString, connection);
             command.Parameters.AddWithValue("@name", custName);
             SqlDataReader reader = executeCommandWithReader();
-            while (reader.Read())
+            List<Customer> customers = new List<Customer>();
+            while(reader.Read())
             {
-                string id = reader["custId"].ToString();
-                string name = reader["name"].ToString();
-                string address = reader["address"].ToString();
-                string entry = id + " " + name + " " + address;
-                sameCustomers.Add(entry);
+                customers.Add(new Customer(reader["name"].ToString(),
+                                           reader["address"].ToString(),
+                                           reader["custId"].ToString()));
             }
             connection.Close();
-            return sameCustomers;
+            return customers;
         }
 
         public List<Customer> getCustomerObjects()
@@ -91,6 +101,19 @@ namespace CarCare
             connection.Close();
         }
 #endregion
+        public void addNewCar(string name, string address, string make, string model, int year, string license)
+        {
+            command = new SqlCommand("AddNewCar", connection);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("name", name);
+            command.Parameters.AddWithValue("address", address);
+            command.Parameters.AddWithValue("make", make);
+            command.Parameters.AddWithValue("model", model);
+            command.Parameters.AddWithValue("year", year);
+            command.Parameters.AddWithValue("license", license);
+            executeCommand();
+            connection.Close();
+        }
 
         public List<Car> getCarObjects(string customerID)
         {
@@ -122,7 +145,39 @@ namespace CarCare
 
         public List<Repair> getRepairs(string carID)
         {
-            return new List<Repair>();
+            List<Repair> repairs = new List<Repair>();
+            string getRepairsQuery = "SELECT repairId, repairCost, repairDetails FROM Repairs WHERE carId = @carID";
+            command = new SqlCommand(getRepairsQuery, connection);
+            command.Parameters.AddWithValue("@carID", carID);
+            SqlDataReader reader = executeCommandWithReader();
+            while(reader.Read())
+            {
+                repairs.Add(new Repair(reader["repairId"].ToString(),
+                                       reader["repairDetails"].ToString(),
+                                       reader["repairCost"].ToString()));
+            }
+            connection.Close();
+            return repairs;
+        }
+
+        public void addRepair(string repairDetails, float repairCost, string carID)
+        {
+            string addRepairQuery = "INSERT INTO Repairs (carId, repairDetails, repairCost) VALUES (@carId, @repairDetails, @repairCost)";
+            command = new SqlCommand(addRepairQuery, connection);
+            command.Parameters.AddWithValue("@carId", carID);
+            command.Parameters.AddWithValue("@repairDetails", repairDetails);
+            command.Parameters.AddWithValue("@repairCost", repairCost);
+            executeCommand();
+            connection.Close();
+        }
+
+        public void deleteRepair(string repairID)
+        {
+            string deleteQuery = "DELETE FROM Repairs WHERE repairId = @repairId";
+            command = new SqlCommand(deleteQuery, connection);
+            command.Parameters.AddWithValue("@repairId", repairID);
+            executeCommand();
+            connection.Close();
         }
     }
 }

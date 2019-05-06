@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarCare
 {
-    class Repair
+    public class Repair
     {
         public string id;
         public string repairDetails;
@@ -21,7 +21,14 @@ namespace CarCare
         override
         public String ToString()
         {
-            return id + " " + repairDetails + " " + repairCost;
+            return repairDetails + "\n" + repairCost;
+        }
+
+        public string summaryString()
+        {
+            if(repairDetails.Length >= 100)
+                return id + " " + repairDetails.Substring(0, 90) + "...";
+            return id + " " + repairDetails;
         }
     }
 }

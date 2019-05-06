@@ -33,25 +33,8 @@ namespace CarCare
             int year = Convert.ToInt32(yearInt.Value);
             string license = licenseTxt.Text;
 
-            command = new SqlCommand("AddNewCust", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("name", name);
-            command.Parameters.AddWithValue("address", address);
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
-
-            command = new SqlCommand("AddNewCar", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("name", name);
-            command.Parameters.AddWithValue("address", address);
-            command.Parameters.AddWithValue("make", make);
-            command.Parameters.AddWithValue("model", model);
-            command.Parameters.AddWithValue("year", year);
-            command.Parameters.AddWithValue("license", license);
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            DatabaseWorker dbw = new DatabaseWorker(connection, command);
+            dbw.addCustomer(name, address, make, model, year, license);
 
             Close();
         }
