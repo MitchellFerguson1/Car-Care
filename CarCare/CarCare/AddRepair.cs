@@ -31,8 +31,18 @@ namespace CarCare
         {
             string repairDetail = RepairDetailsTxt.Text;
             float repairCost = (float)(Cost.Value);
-            dbw.addRepair(repairDetail, repairCost, currentCar.carID);
-            Close();
+            bool allEntered = false;
+
+            if (!repairDetail.Equals(""))
+                allEntered = true;
+
+            if (allEntered)
+            {
+                dbw.addRepair(repairDetail, repairCost, currentCar.carID);
+                Close();
+            }
+            else
+                MessageBox.Show("Not all items have a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)

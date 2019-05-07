@@ -32,11 +32,22 @@ namespace CarCare
             string model = modelTxt.Text;
             int year = Convert.ToInt32(yearInt.Value);
             string license = licenseTxt.Text;
+            bool allEntered = false;
 
-            DatabaseWorker dbw = new DatabaseWorker(connection, command);
-            dbw.addCustomer(name, address, make, model, year, license);
+            //Make sure all data is entered
+            if ((name.Equals("") || address.Equals("") || make.Equals("") || model.Equals("") || year.Equals("")
+                    || license.Equals("")))
+                allEntered = true;
 
-            Close();
+            if (!allEntered)
+            {
+                DatabaseWorker dbw = new DatabaseWorker(connection, command);
+                dbw.addCustomer(name, address, make, model, year, license);
+
+                Close();
+            }
+            else
+                MessageBox.Show("Not all items have a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
         }
     }
 }

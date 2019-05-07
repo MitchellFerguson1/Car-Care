@@ -48,8 +48,10 @@ namespace CarCare
                 if(car.ToString().Equals(selectedCar))
                 {
                     dbw.deleteCar(car.carID);
+                    break;
                 }
             }
+            RefreshBtn_Click(sender, e);
         }
 
         private void confirmBtn_Click(object sender, EventArgs e)

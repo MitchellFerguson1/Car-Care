@@ -152,6 +152,7 @@
             // 
             // addRep
             // 
+            this.addRep.Enabled = false;
             this.addRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addRep.Location = new System.Drawing.Point(1222, 756);
             this.addRep.Margin = new System.Windows.Forms.Padding(6);
@@ -164,6 +165,7 @@
             // 
             // deleteRep
             // 
+            this.deleteRep.Enabled = false;
             this.deleteRep.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteRep.Location = new System.Drawing.Point(1834, 756);
             this.deleteRep.Margin = new System.Windows.Forms.Padding(6);
@@ -188,6 +190,7 @@
             // 
             // editCust
             // 
+            this.editCust.Enabled = false;
             this.editCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editCust.Location = new System.Drawing.Point(520, 708);
             this.editCust.Margin = new System.Windows.Forms.Padding(6);
@@ -200,6 +203,7 @@
             // 
             // deleteCust
             // 
+            this.deleteCust.Enabled = false;
             this.deleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteCust.Location = new System.Drawing.Point(520, 815);
             this.deleteCust.Margin = new System.Windows.Forms.Padding(6);
@@ -269,6 +273,7 @@
             this.carDetailsTxt.Name = "carDetailsTxt";
             this.carDetailsTxt.Size = new System.Drawing.Size(1013, 51);
             this.carDetailsTxt.TabIndex = 20;
+            this.carDetailsTxt.Text = " ";
             // 
             // Home
             // 

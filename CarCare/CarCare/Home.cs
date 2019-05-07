@@ -59,7 +59,7 @@ namespace CarCare
             formRefresh();
         }
 
-#region Customer Stuff
+        #region Customers
         private void addCust_Click(object sender, EventArgs e)
         {
             AddCustomer ac = new AddCustomer(connection, command);
@@ -70,6 +70,11 @@ namespace CarCare
         {
             dbw.deleteCustomer(selectedCustomer.id);
             selectedCustomer = null;
+            editCust.Enabled = false;
+            deleteCust.Enabled = false;
+            addRep.Enabled = false;
+            deleteRep.Enabled = false;
+            RefreshRepairBtn_Click(sender, e);
             formRefresh();
         }
 
@@ -96,6 +101,8 @@ namespace CarCare
                     string carString = car.year + " " + car.make + " " + car.model;
                     carList.Items.Add(carString);
                 }
+                editCust.Enabled = true;
+                deleteCust.Enabled = true;
             }
         }
 
@@ -120,8 +127,9 @@ namespace CarCare
                 ec.Show();
             }
         }
-#endregion
+        #endregion
 
+        #region Repairs
         private void AddRep_Click(object sender, EventArgs e)
         {
             AddRepair ap = new AddRepair(connection, command, dbw, selectedCar);
@@ -132,11 +140,41 @@ namespace CarCare
         {
             repairs = dbw.getRepairs(selectedCar.carID);
             repairHist.Items.Clear();
-            foreach(Repair repair in repairs)
+            foreach (Repair repair in repairs)
             {
                 repairHist.Items.Add(repair.summaryString());
             }
         }
+
+        private void DeleteRep_Click(object sender, EventArgs e)
+        {
+            string repair = repairHist.GetItemText(repairHist.SelectedItem);
+            foreach (Repair r in repairs)
+            {
+                if (r.summaryString().Equals(repair))
+                {
+                    dbw.deleteRepair(r.id);
+                    break;
+                }
+            }
+            RefreshRepairBtn_Click(sender, e);
+            deleteRep.Enabled = false;
+        }
+
+        private void RepairHist_Click(object sender, EventArgs e)
+        {
+            string repair = repairHist.GetItemText(repairHist.SelectedItem);
+            foreach (Repair r in repairs)
+            {
+                if (r.summaryString().Equals(repair))
+                {
+                    RepairDetailTxt.Text = r.ToString();
+                    deleteRep.Enabled = true;
+                    break;
+                }
+            }
+        }
+        #endregion
 
         private void CarList_MouseClick(object sender, MouseEventArgs e)
         {
@@ -161,32 +199,7 @@ namespace CarCare
                 {
                     repairHist.Items.Add(r.summaryString());
                 }
-            }
-        }
-
-        private void DeleteRep_Click(object sender, EventArgs e)
-        {
-            string repair = repairHist.GetItemText(repairHist.SelectedItem);
-            foreach (Repair r in repairs)
-            {
-                if (r.summaryString().Equals(repair))
-                {
-                    dbw.deleteRepair(r.id);
-                    break;
-                }
-            }
-        }
-
-        private void RepairHist_Click(object sender, EventArgs e)
-        {
-            string repair = repairHist.GetItemText(repairHist.SelectedItem);
-            foreach (Repair r in repairs)
-            {
-                if (r.summaryString().Equals(repair))
-                {
-                    RepairDetailTxt.Text = r.ToString();
-                    break;
-                }
+                addRep.Enabled = true;
             }
         }
     }

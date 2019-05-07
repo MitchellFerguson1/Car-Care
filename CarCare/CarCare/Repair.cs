@@ -21,7 +21,7 @@ namespace CarCare
         override
         public String ToString()
         {
-            return repairDetails + "\n" + repairCost;
+            return repairDetails + "\n$" + repairCost;
         }
 
         public string summaryString()

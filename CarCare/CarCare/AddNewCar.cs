@@ -33,11 +33,20 @@ namespace CarCare
             string model = ModelTxt.Text;
             int year = Convert.ToInt32(YearTxt.Text);
             string license = LicenseTxt.Text;
+            bool allEntered = false;
 
-            DatabaseWorker dbw = new DatabaseWorker(connection, command);
-            dbw.addNewCar(name, address, make, model, year, license);
+            if (!(make.Equals("") || model.Equals("") || year.Equals("") || license.Equals("")))
+                allEntered = true;
 
-            Close();
+            if (allEntered)
+            {
+                DatabaseWorker dbw = new DatabaseWorker(connection, command);
+                dbw.addNewCar(name, address, make, model, year, license);
+
+                Close();
+            }
+            else
+                MessageBox.Show("Not all items have a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
         }
     }
 }
