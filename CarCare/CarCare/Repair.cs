@@ -18,15 +18,23 @@ namespace CarCare
             this.repairCost = repairCost;
         }
 
+        /// <summary>
+        /// Get the repair details and the cost. All the information of the repair excluding the ID
+        /// </summary>
+        /// <returns>Repair details</returns>
         override
         public String ToString()
         {
             return repairDetails + "\n$" + repairCost;
         }
 
+        /// <summary>
+        /// Get a short summary of the repair
+        /// </summary>
+        /// <returns>Repair summary</returns>
         public string summaryString()
         {
-            if(repairDetails.Length >= 100)
+            if(repairDetails.Length >= 100) //Make sure the box doesn't have long summaries
                 return id + " " + repairDetails.Substring(0, 90) + "...";
             return id + " " + repairDetails;
         }

@@ -41,12 +41,13 @@ namespace CarCare
 
             if (!allEntered)
             {
+                //If all data is entered add it to the database
                 DatabaseWorker dbw = new DatabaseWorker(connection, command);
                 dbw.addCustomer(name, address, make, model, year, license);
 
                 Close();
             }
-            else
+            else //Otherwise show an error and display it
                 MessageBox.Show("Not all items have a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
         }
     }

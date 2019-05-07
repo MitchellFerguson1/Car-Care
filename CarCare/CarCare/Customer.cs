@@ -18,6 +18,10 @@ namespace CarCare
             id = aId;
         }
 
+        /// <summary>
+        /// Get the string of the customer
+        /// </summary>
+        /// <returns>Customer Details</returns>
         override
         public string ToString()
         {

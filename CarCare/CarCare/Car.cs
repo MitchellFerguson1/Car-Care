@@ -8,6 +8,7 @@ namespace CarCare
 {
     public class Car
     {
+        //These are all public so I don't have a ton of getters and setters
         public string carID;
         public string make;
         public string model;
@@ -23,6 +24,10 @@ namespace CarCare
             this.license = license;
         }
 
+        /// <summary>
+        /// Get the string of the car
+        /// </summary>
+        /// <returns>The car details</returns>
         override
         public string ToString()
         {
